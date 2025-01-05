@@ -19,7 +19,7 @@ Download and install Node.js from the [Node.js website](https://nodejs.org/). Th
 Clone this project repository to your local machine:
 
 ```bash
-git clone <repository_url>
+git clone https://github.com/xcdanish/crypto-ui-next.git
 ```
 
 Navigate to the project directory:

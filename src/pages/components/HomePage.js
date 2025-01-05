@@ -7,7 +7,6 @@ const HomePage = () => {
   return (
     <div
       className="d-flex justify-content-center align-items-center"
-      style={{ backgroundColor: "#F8F9FA" }}
     >
       <Container>
         {/* Logo */}
