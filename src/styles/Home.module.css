@@ -1,0 +1,145 @@
+/* Page Layout */
+.page {
+  --gray-rgb: 0, 0, 0;
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+
+  --button-primary-hover: #383838;
+  --button-secondary-hover: #f2f2f2;
+
+  display: grid;
+  grid-template-rows: 20px 1fr 20px;
+  align-items: center;
+  justify-items: center;
+  min-height: 100svh;
+  padding: 80px;
+  gap: 64px;
+  font-family: var(--font-geist-sans);
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .page {
+    --gray-rgb: 255, 255, 255;
+    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
+    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+
+    --button-primary-hover: #ccc;
+    --button-secondary-hover: #1a1a1a;
+  }
+}
+
+.icon-transparent {
+  fill: none;
+  stroke: black;
+  stroke-width: 2px;
+}
+
+.btn-home {
+  padding: 0 20px !important;
+  gap: 8px !important;
+  height: 40px !important;
+}
+
+
+
+.navbar {
+  transition: all 0.3s ease-in-out;
+  /* Smooth transition */
+}
+
+.fixed-top {
+  z-index: 1030;
+  /* Ensure it stays on top of other elements */
+  top: 0;
+  /* Make sure it's at the top */
+  width: 100%;
+  /* Ensures the navbar stretches across the full screen */
+  box-shadow: 0 4px 2px -2px gray;
+}
+
+/* Footer Hover (Non-Touch Devices) */
+@media (hover: hover) and (pointer: fine) {
+  .footer a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .page {
+    padding: 32px;
+    padding-bottom: 80px;
+  }
+
+  .footer {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Smaller thumbnails for mobile */
+  .slick-dots.slick-thumb li {
+    width: 100px;
+    height: 100px;
+  }
+
+  .custom-thumbnail {
+    height: 100px !important;
+    width: 100px !important;
+  }
+
+  .custom-thumbnail img {
+    height: 100px !important;
+    width: 100px !important;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tag-button {
+  font-size: 14px;
+  padding: 5px 10px;
+  margin: 5px !important;
+}
+
+.share-section {
+  margin-top: 20px;
+}
+
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.share-button {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Dark Mode Logo */
+@media (prefers-color-scheme: dark) {
+  .logo {
+    filter: invert();
+  }
+}
+
+@media (max-width: 768px) {
+  .slick-dots.slick-thumb {
+    display: flex !important;
+    /* Ensure the dots are visible on mobile/tablet */
+  }
+
+  .custom-thumbnail {
+    width: 0px !important;
+    /* Smaller thumbnail size for mobile */
+    height: 0px !important;
+  }
+}
