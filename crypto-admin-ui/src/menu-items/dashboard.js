@@ -13,23 +13,55 @@ const icons = {
 
 const dashboard = {
   id: 'dashboard',
-  title: <FormattedMessage id="dashboard" />,
+  // title: <FormattedMessage id="dashboard" />,
   icon: icons.IconDashboard,
   type: 'group',
   children: [
     {
-      id: 'default',
-      title: <FormattedMessage id="default" />,
+      id: 'dashboard',
+      title: <FormattedMessage id="dashboard" />,
       type: 'item',
       url: '/dashboard/default',
       icon: icons.IconDashboard,
       breadcrumbs: false
     },
     {
-      id: 'analytics',
-      title: <FormattedMessage id="analytics" />,
+      id: 'my-wallet',
+      title: <FormattedMessage id="my-wallet" />,
       type: 'item',
-      url: '/dashboard/analytics',
+      url: '/dashboard/defaults',
+      icon: icons.IconDeviceAnalytics,
+      breadcrumbs: false
+    },
+    {
+      id: 'transactions',
+      title: <FormattedMessage id="transactions" />,
+      type: 'item',
+      url: '/dashboard/defaults',
+      icon: icons.IconDashboard,
+      breadcrumbs: false
+    },
+    {
+      id: 'trading',
+      title: <FormattedMessage id="trading" />,
+      type: 'item',
+      url: '/dashboard/defaults',
+      icon: icons.IconDeviceAnalytics,
+      breadcrumbs: false
+    },
+    {
+      id: 'exchange',
+      title: <FormattedMessage id="exchange" />,
+      type: 'item',
+      url: '/dashboard/defaults',
+      icon: icons.IconDashboard,
+      breadcrumbs: false
+    },
+    {
+      id: 'market-capital',
+      title: <FormattedMessage id="market-capital" />,
+      type: 'item',
+      url: '/dashboard/defaults',
       icon: icons.IconDeviceAnalytics,
       breadcrumbs: false
     }

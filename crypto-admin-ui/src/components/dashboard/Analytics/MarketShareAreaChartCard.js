@@ -4,145 +4,135 @@ import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 
 // material-ui
-import { alpha, useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-
+import Button from '@mui/material/Button';
+import { dispatch, useSelector } from 'store';
 // project imports
 import useConfig from 'hooks/useConfig';
 import MainCard from 'components/ui-component/cards/MainCard';
 import { ThemeMode } from 'config';
 
 // assets
-import { IconBrandFacebook, IconBrandYoutube, IconBrandTwitter } from '@tabler/icons-react';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
 const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
-const chartOptions = {
-  chart: {
-    height: 400,
-    type: 'area',
-    id: 'market-share-area-chart',
-    toolbar: {
-      show: false
-    },
-    zoom: {
-      enabled: false
-    },
-    sparkline: {
-      enabled: true
-    }
-  },
-  dataLabels: {
-    enabled: false
-  },
-  stroke: {
-    width: 2
-  },
-  fill: {
-    type: 'gradient',
-    gradient: {
-      shadeIntensity: 1,
-      opacityFrom: 0.5,
-      opacityTo: 0,
-      stops: [0, 80, 100]
-    }
-  },
-  xaxis: {
-    categories: ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-    labels: {
-      show: true,
-      rotate: -45,
-      hideOverlappingLabels: false, // Ensure all labels are visible
-      style: {
-        fontSize: '12px',
-        fontFamily: 'Poppins, sans-serif',
-        fontWeight: 400
+const MarketShareAreaChartCard = () => {
+  const theme = useTheme();
+  const { mode } = useConfig();
+  const { getCryptoCoinGraph, getCryptoCoinGraphLoading } = useSelector((state) => state.cryptoData);
+ 
+  // console.log('🚀 ~ Dashboard ~ getCryptoCoinGraph:', getCryptoCoinGraph);
+  // State for selected graph and chart options
+  const [series, setSeries] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [options, setOptions] = useState({
+    chart: {
+      height: 400,
+      type: 'area',
+      toolbar: {
+        show: false
+      },
+      zoom: {
+        enabled: false
       }
     },
-    tickAmount: 11 // Matches the number of categories
-  },
-  yaxis: {
-    labels: {
-      show: true,
-      align: 'right',
-      style: {
-        fontSize: '12px',
-        fontFamily: 'Poppins, sans-serif',
-        fontWeight: 400
-      },
-      offsetX: 15
-    }
-  },
-  legend: {
-    show: false
-  },
-  grid: {
-    show: true,
-    position: 'back',
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      width: 2
+    },
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shadeIntensity: 1,
+        opacityFrom: 0.5,
+        opacityTo: 0,
+        stops: [0, 80, 100]
+      }
+    },
     xaxis: {
-      lines: {
-        show: false
+      categories: [],
+      labels: {
+        show: true,
+        rotate: -45,
+        style: {
+          fontSize: '12px',
+          fontFamily: 'Poppins, sans-serif',
+          fontWeight: 400
+        }
       }
     },
     yaxis: {
-      lines: {
-        show: true
+      labels: {
+        show: true,
+        style: {
+          fontSize: '12px',
+          fontFamily: 'Poppins, sans-serif',
+          fontWeight: 400
+        }
       }
     },
-    padding: {
-      top: 40,
-      right: 20,
-      bottom: 40,
-      left: 30
-    }
-  }
-};
-
-// ===========================|| DASHBOARD ANALYTICS - MARKET SHARE AREA CHART CARD ||=========================== //
-
-const MarketShareAreaChartCard = () => {
-  const theme = useTheme();
-
-  const [series] = useState([
-    {
-      name: 'Youtube',
-      data: [10, 90, 65, 85, 40, 80, 30, 50, 70, 20, 60, 40]
+    legend: {
+      show: false
     },
-    {
-      name: 'Facebook',
-      data: [50, 30, 25, 15, 60, 10, 25, 35, 45, 55, 20, 30]
-    },
-    {
-      name: 'Twitter',
-      data: [5, 50, 40, 55, 20, 40, 20, 30, 25, 35, 45, 15]
+    grid: {
+      show: true,
+      position: 'back',
+      padding: {
+        top: 20,
+        right: 20,
+        bottom: 40,
+        left: 30
+      }
     }
-  ]);
+  });
 
-  const { mode } = useConfig();
+  // Set the default graph data on initial render
 
-  const secondaryMain = theme.palette.secondary.main;
-  const errorMain = theme.palette.error.main;
-  const primaryDark = theme.palette.primary.dark;
+  // Update chart data and categories dynamically
+  const updateGraph = (graphData) => {
+    console.log('🚀 graphData:', graphData);
+    setSeries([
+      {
+        name: graphData._id,
+        data: graphData.data.map((item) => item.amount)
+      }
+    ]);
+    setCategories(graphData.data.map((item) => item.date));
+  };
 
-  const [options, setOptions] = useState(chartOptions);
+  useEffect(() => {
+    if (getCryptoCoinGraph && getCryptoCoinGraph.length > 0) {
+      const defaultGraph = getCryptoCoinGraph[0];
+      updateGraph(defaultGraph);
+    }
+  }, [getCryptoCoinGraph]);
 
+  // Update chart options when categories or theme changes
   useEffect(() => {
     setOptions((prevState) => ({
       ...prevState,
-      colors: [secondaryMain, errorMain, primaryDark],
+      xaxis: {
+        ...prevState.xaxis,
+        categories
+      },
+      colors: [theme.palette.secondary.main, theme.palette.error.main, theme.palette.primary.dark],
       tooltip: {
         theme: mode
       }
     }));
-  }, [mode, secondaryMain, errorMain, primaryDark]);
+  }, [categories, theme, mode]);
 
   return (
     <MainCard sx={{ '&>div': { p: 0, pb: '0px !important' } }}>
       <Box sx={{ p: 3 }}>
         <Grid container direction="column" spacing={3}>
+          {/* Header Section */}
           <Grid item container spacing={1} alignItems="center">
             <Grid item>
               <Typography variant="h3">Crypto Statistics</Typography>
@@ -155,79 +145,45 @@ const MarketShareAreaChartCard = () => {
               <Typography variant="h3">27,695.65</Typography>
             </Grid>
           </Grid>
+
+          {/* Subheader Section */}
           <Grid item xs={12}>
             <Typography sx={{ mt: -2.5, fontWeight: 400 }} color="inherit" variant="h5">
-              Lorem ipsum dolor sit amet, consectetur
+              Analyze the performance of different cryptocurrencies over time.
             </Typography>
           </Grid>
+
+          {/* Button Listing */}
           <Grid item container alignItems="center" spacing={3}>
-            <Grid item>
-              <Grid container alignItems="center" spacing={1}>
-                <Grid item>
-                  <Typography
-                    sx={{
-                      width: 40,
-                      height: 40,
-                      color: 'secondary.main',
-                      borderRadius: '12px',
-                      padding: 1,
-                      bgcolor: mode === ThemeMode.DARK ? 'background.default' : 'secondary.light'
-                    }}
-                  >
-                    <IconBrandFacebook stroke={1.5} />
-                  </Typography>
-                </Grid>
-                <Grid item sm zeroMinWidth>
-                  <Typography variant="h4">+ 45.36%</Typography>
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item>
-              <Grid container alignItems="center" spacing={1}>
-                <Grid item>
-                  <Typography
-                    sx={{
-                      width: 40,
-                      height: 40,
-                      color: 'primary.main',
-                      borderRadius: '12px',
-                      padding: 1,
-                      bgcolor: mode === ThemeMode.DARK ? 'background.default' : 'primary.light'
-                    }}
-                  >
-                    <IconBrandTwitter stroke={1.5} />
-                  </Typography>
-                </Grid>
-                <Grid item sm zeroMinWidth>
-                  <Typography variant="h4">- 50.69%</Typography>
+            {getCryptoCoinGraph?.map((item, i) => (
+              <Grid item key={i}>
+                <Grid container alignItems="center" spacing={1}>
+                  <Grid item>
+                    <Typography
+                      sx={{
+                        // width: 40,
+                        height: 40,
+                        color: 'secondary.main',
+                        borderRadius: '12px',
+                        padding: 1,
+                        bgcolor: mode === ThemeMode.DARK ? 'background.default' : 'secondary.light',
+                        cursor: 'pointer',
+                        textTransform: 'capitalize'
+                      }}
+                      onClick={() => updateGraph(item)}
+                    >
+                      {item?._id}
+                    </Typography>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-            <Grid item>
-              <Grid container alignItems="center" spacing={1}>
-                <Grid item>
-                  <Typography
-                    sx={{
-                      width: 40,
-                      height: 40,
-                      color: 'error.main',
-                      borderRadius: '12px',
-                      padding: 1,
-                      bgcolor: mode === ThemeMode.DARK ? 'background.default' : alpha(theme.palette.error.light, 0.4)
-                    }}
-                  >
-                    <IconBrandYoutube stroke={2} />
-                  </Typography>
-                </Grid>
-                <Grid item sm zeroMinWidth>
-                  <Typography variant="h4">+ 16.85%</Typography>
-                </Grid>
-              </Grid>
-            </Grid>
+            ))}
             <Grid item xs zeroMinWidth />
           </Grid>
         </Grid>
       </Box>
+
+      {/* Chart */}
       <ReactApexChart options={options} series={series} type="area" height={400} />
     </MainCard>
   );

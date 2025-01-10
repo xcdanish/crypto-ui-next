@@ -45,10 +45,10 @@ const Sidebar = () => {
     const isVerticalOpen = menuOrientation === MenuOrientation.VERTICAL && drawerOpen;
     const drawerContent = (
       <>
-        <MenuCard />
-        <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
+        {/* <MenuCard /> */}
+        {/* <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
           <Chip label={process.env.REACT_APP_VERSION} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
-        </Stack>
+        </Stack> */}
       </>
     );
 
@@ -94,7 +94,7 @@ const Sidebar = () => {
           color="inherit"
         >
           {downMD && logo}
-          {drawer}
+          {/* {drawer} */}
         </Drawer>
       ) : (
         <MiniDrawerStyled variant="permanent" open={drawerOpen}>

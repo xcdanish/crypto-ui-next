@@ -1,0 +1,55 @@
+REQUEST DATE : August 5th 2024, 9:20:01 pm
+API URL : http://localhost:7000/api/sub-category/add
+API PARAMETER : {"name":"Women","cat_id":"66b0d20773cb4bdaca5a9e5f"}
+Error : ValidationError: cat_id: Path `cat_id` is required.
+
+REQUEST DATE : August 5th 2024, 11:18:09 pm
+API URL : http://localhost:7000/api/product/add
+API PARAMETER : {"name":"Nike","category":"66b0d20773cb4bdaca5a9e5f","sub_category":"66b0f4ba0f5d781c75b14a69","user_id":"","price":"1000","total_product":"45","description":"this is nike shoes"}
+Error : TypeError: Helper.resizeImage is not a function
+
+REQUEST DATE : August 6th 2024, 1:24:41 pm
+API URL : http://localhost:7000/api/user/login
+API PARAMETER : {"email":"user@gmail.com","password":"Danish@1996"}
+Error : ReferenceError: jwt is not defined
+
+REQUEST DATE : August 6th 2024, 1:39:58 pm
+API URL : http://localhost:7000/api/wishlist/add-product
+API PARAMETER : {"product_id":"66b1108a79f387cae601d62c"}
+Error : ReferenceError: result is not defined
+
+REQUEST DATE : August 6th 2024, 1:40:44 pm
+API URL : http://localhost:7000/api/wishlist/add-product
+API PARAMETER : {"product_id":"66b1108a79f387cae601d62c"}
+Error : ReferenceError: result is not defined
+
+REQUEST DATE : August 6th 2024, 2:06:53 pm
+API URL : http://localhost:7000/api/wishlist/add-product
+API PARAMETER : {"product_id":"66b1108a79f387cae601d62c"}
+Error : ReferenceError: result is not defined
+
+REQUEST DATE : August 6th 2024, 5:51:07 pm
+API URL : http://localhost:7000/api/my-cart/add-cart
+API PARAMETER : {"product_id":"66b1108a79f387cae601d62c","stocks":1}
+Error : ValidationError: price: Cast to Number failed for value "66b1108a79f387cae601d62c" (type string) at path "price"
+
+REQUEST DATE : August 6th 2024, 5:54:57 pm
+API URL : http://localhost:7000/api/my-cart/add-cart
+API PARAMETER : {"product_id":"66b1108a79f387cae601d62c","stocks":1}
+Error : ValidationError: price: Cast to Number failed for value "66b1108a79f387cae601d62c" (type string) at path "price"
+
+REQUEST DATE : August 6th 2024, 5:55:49 pm
+API URL : http://localhost:7000/api/my-cart/add-cart
+API PARAMETER : {"product_id":"66b1108a79f387cae601d62c","stocks":1}
+Error : ValidationError: price: Cast to Number failed for value "66b1108a79f387cae601d62c" (type string) at path "price"
+
+REQUEST DATE : August 6th 2024, 5:56:13 pm
+API URL : http://localhost:7000/api/my-cart/add-cart
+API PARAMETER : {"product_id":"66b1108a79f387cae601d62c","stocks":1}
+Error : ValidationError: price: Cast to Number failed for value "66b1108a79f387cae601d62c" (type string) at path "price"
+
+REQUEST DATE : August 6th 2024, 5:56:31 pm
+API URL : http://localhost:7000/api/my-cart/add-cart
+API PARAMETER : {"product_id":"66b1108a79f387cae601d62c","stocks":1}
+Error : ValidationError: price: Cast to Number failed for value "66b1108a79f387cae601d62c" (type string) at path "price"
+

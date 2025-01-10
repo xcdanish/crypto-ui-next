@@ -159,31 +159,31 @@ const Customization = () => {
                     <ThemeModeLayout />
                     <Divider />
                   </Grid>
-                  <Grid item xs={12}>
-                    {/* Theme Preset Color */}
+                  {/* <Grid item xs={12}>
+                    Theme Preset Color
                     <PresetColor />
                     <Divider />
-                  </Grid>
-                  <Grid item xs={12}>
-                    {/* Input Background */}
+                  </Grid> */}
+                  {/* <Grid item xs={12}>
+                    Input Background
                     <InputFilled />
                     <Divider />
                   </Grid>
                   <Grid item xs={12}>
-                    {/* Theme Width */}
+                    Theme Width
                     <BoxContainer />
                     <Divider />
                   </Grid>
                   <Grid item xs={12}>
-                    {/* Theme Layout */}
+                    Theme Layout
                     <Layout />
                     <Divider />
                   </Grid>
                   <Grid item xs={12}>
-                    {/* Sidebar Drawer */}
+                    Sidebar Drawer
                     <SidebarDrawer />
                     <Divider />
-                  </Grid>
+                  </Grid> */}
                   <Grid item xs={12}>
                     {/* Menu Orientation */}
                     <MenuOrientation />
@@ -198,11 +198,11 @@ const Customization = () => {
                     <FontFamily />
                     <Divider />
                   </Grid>
-                  <Grid item xs={12}>
-                    {/* border radius */}
+                  {/* <Grid item xs={12}>
+                    border radius
                     <BorderRadius />
                     <Divider />
-                  </Grid>
+                  </Grid> */}
                 </Grid>
               </CustomTabPanel>
             </MainCard>

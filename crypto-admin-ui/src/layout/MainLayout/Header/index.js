@@ -37,7 +37,7 @@ const Header = () => {
     <>
       {/* logo & toggler button */}
       <Box sx={{ width: downMD ? 'auto' : 228, display: 'flex' }}>
-        <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
+        <Box component="span" sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1 }}>
           <LogoSection />
         </Box>
         {!isHorizontal && (

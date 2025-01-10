@@ -14,7 +14,7 @@ import NavGroup from './NavGroup';
 import useConfig from 'hooks/useConfig';
 
 import menuItem from 'menu-items';
-import { Menu } from 'menu-items/widget';
+// import { Menu } from 'menu-items/widget';
 import { HORIZONTAL_MAX_ITEM, MenuOrientation } from 'config';
 import { useGetMenuMaster, useGetMenu } from 'api/menu';
 
@@ -33,7 +33,7 @@ const MenuList = () => {
   const [selectedID, setSelectedID] = useState('');
   const [menuItems, setMenuItems] = useState({ items: [] });
 
-  const widgetMenu = Menu();
+  const widgetMenu =""
 
   useLayoutEffect(() => {
     const isFound = menuItem.items.some((element) => {
@@ -99,7 +99,7 @@ const MenuList = () => {
       default:
         return (
           <Typography key={item.id} variant="h6" color="error" align="center">
-            Menu Items Error
+            {/* Menu Items Error */}
           </Typography>
         );
     }
